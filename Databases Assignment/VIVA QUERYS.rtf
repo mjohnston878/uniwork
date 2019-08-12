@@ -1,0 +1,115 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf600
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;\red28\green71\blue110;\red223\green223\blue223;}
+{\*\expandedcolortbl;;\cssrgb\c13725\c35294\c50588;\cssrgb\c89804\c89804\c89804;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+// BI Query Most reoccurring aircrafts\
+\
+SELECT\
+    AircraftID,\
+    COUNT(*)\
+FROM\
+    EJ_Flight\
+GROUP BY\
+    AircraftID\
+ORDER BY\
+    `COUNT(*)`\
+DESC\
+    \
+\
+\
+\
+//Join flight and Aircraft table on AircraftID using inner join\
+\
+SELECT\
+    *\
+FROM\
+    EJ_Flight\
+INNER JOIN EJ_Aircraft ON EJ_Flight.AircraftID = EJ_Aircraft.AircraftID;\
+\
+\
+\
+\
+// see all passengers on a flight under one booking with date of booking.  \
+\
+SELECT\
+    *\
+FROM\
+    EJ_Passenger\
+INNER JOIN EJ_Booking ON EJ_Passenger.BookingID = EJ_Booking.BookingID\
+WHERE\
+    EJ_Passenger.BookingID = 6;\
+\
+\
+// to calculate the total cost of a booking \
+\
+SELECT\
+    SUM(ItemCost)\
+FROM\
+    `EJ_BookingFares`\
+WHERE\
+    BookingID = 6;\
+\
+\
+// see where a single item cost was over \'a3100\
+\
+SELECT\
+    FareDetails,\
+    ItemCost\
+FROM\
+    `EJ_BookingFares`\
+WHERE\
+    ItemCost > 100\
+ORDER BY\
+	ItemCost DESC\
+\
+//Insert Query for add new passenger\
+\
+INSERT INTO `EJ_Passenger`(\
+    `PassengerID`,\
+    `TitleID`,\
+    `FirstName`,\
+    `LastName`,\
+    `AgeID`,\
+    `BookingID`,\
+    `SeatID`,\
+    `LuggageID`,\
+    `FlightID`\
+)\
+VALUES(\
+    55,\
+    1,\
+    'Ryan',\
+    'Richardson',\
+    1,\
+    2,\
+    5,\
+    2,\
+    8\
+)\
+\
+// insert new table\
+\
+CREATE TABLE EJ_SpecialAssistance(\
+    AssistanceID INT(11) AUTO_INCREMENT,\
+    AssistanceType VARCHAR(255),\
+    PRIMARY KEY(AssistanceID)\
+)\
+\
+// fill table\
+\
+INSERT INTO `EJ_SpecialAssistance` (`AssistanceID`, `AssistanceType`) VALUES (NULL, 'Peanut Allergy'), (NULL, 'Penicillin Allergy'), (NULL, 'Blind'), (NULL, 'Deaf'), (NULL, 'Learning Disability'), (NULL, 'Guide Dog Assisted'), (NULL, 'Amputee');\
+\
+// DROP TABLE\
+\
+\pard\pardeftab720\sl300\partightenfactor0
+
+\f1\fs26\fsmilli13120 \cf2 \cb3 \expnd0\expndtw0\kerning0
+DROP\'a0TABLE\'a0EJ_SpecialAssistance
+\f0\fs24 \cf0 \cb1 \kerning1\expnd0\expndtw0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+}
