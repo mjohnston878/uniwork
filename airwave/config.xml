@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.phonegap.helloworld" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>Airwave</name>
+    <description>
+        An app for navigating airwave festival
+    </description>
+    <author email="mjohnston77@qub.ac.uk" href="http://phonegap.com">
+        Matthew Johnston 40247362
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="*" />
+    <allow-navigation href="*" />
+</widget>

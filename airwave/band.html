@@ -1,0 +1,127 @@
+<!--Airwave Fesival App by Matthew Johnston Student no 40247362-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+          $(function() {
+          
+              // getting the values passed into the url by the get method from the artist page.  Splits the and returns the values.  
+              function getUrlVars(){
+                  var vars = [];
+                  var hash;
+                  var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                  for(var i = 0; i < hashes.length; i++){
+                    hash = hashes[i].split('=');
+                    //vars.push(hash[0]);
+                    vars[hash[0]] = hash[1];
+                  }
+                  return vars;
+                }
+
+                myid = getUrlVars();
+                
+                idvar = myid["artistID"];
+                
+                console.log(myid["artistID"]+myid["myid"]);
+            
+                //ajax call getting information from database where artistID is the same as the value passed into the url as idvar
+                $.ajax({
+                  type: "GET",
+                  url: "http://mjohnston77.lampt.eeecs.qub.ac.uk/airwave/processband.php?artistID="+idvar,
+                  success: function(data){
+                    console.log(data)
+                    var result = $.parseJSON(data);
+
+                    string = '';
+                    
+                      // loop through artist table and return information on the value of each row that matches the id
+                      $.each( result, function( key, value ) {
+
+                        string += "<div class= 'p-3 mb-2 bg-secondary text-white artistbox' style= 'text-align: center'><h2>"+value['name'] + "</h2> <img src=img/"+ value['img']+" width='100%' height='auto' style= 'margin-bottom: 15px'> <br>" + " <h3>"+value['stage'] + "</h3><p>"+value['startTime']+" - "+value['endTime']+"</p>"
+
+                          
+                          
+                          string += "<h5 style= 'text-align: center'> Genre: "+value['genre']+"</h5><h5 style= 'text-align: center'>For fans of: "+value['similarArtists']+"</h5>"+value['spotify']+value['twitter']+"</div>";
+                          
+                         
+                      });
+                      
+                    $("#bandname").html(string);
+                    
+                  }
+                }); 
+            
+            
+          
+          });
+ 
+    </script>
+    <title>Artist</title>
+</head>
+<body>
+     <!--body colour set to dark creating a dark mode design-->
+    <body class="bg-dark text-white">
+
+            <!--Start of Nav bar-->
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                    
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                      <button class="btn btn-dark hBack" type="button"><span class="oi oi-arrow-thick-left"></span></button>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                      <ul class="navbar-nav">
+                        <li class="nav-item active">
+                          <a class="nav-link" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="artists.html">Artists</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="schedule.html">Schedule</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="info.html">Info</a>
+                        </li>
+                      </ul>
+                    </div>
+                    
+            </nav>
+            <!--End of Nav Bar-->
+                  
+            <div class="container" style= "text-align: center" >
+                    
+                    <!--div holding id which is used as a selector for javascript-->
+                    <div id='bandname'></div>
+                                  
+            </div>
+
+            <script>
+                // back button
+                $(".hBack").on("click", function(e){
+                    e.preventDefault();
+                    window.history.back();
+                });
+              </script>  
+
+                <!-- Optional JavaScript -->
+                <!-- jQuery first, then Popper.js, then Bootstrap JS 
+                <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
+                
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+               
+			   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+				
+            <script type="text/javascript" src="cordova.js"></script>
+        </body>
+</html>
