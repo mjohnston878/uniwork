@@ -1,0 +1,42 @@
+
+
+.container-back {
+    background-color: lightgray;
+    height: 100vh;
+    box-shadow: 0px 0px 10px 0px black;
+    height: max-content;
+    padding: 15px;
+    height: 100%; display: flex;
+   
+
+}
+
+.column-bg {
+    background-color: white;
+    border: thin solid black;
+    margin: 2px 2px 2px 2px;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    
+}
+
+.infocol {
+    padding-top: 50px;
+    margin-top: 40px;
+}
+
+.columnitem {
+    background-color: white;
+    border: thin solid black;
+    margin: 2px 2px 2px 2px;
+    text-align: left;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 50px;
+    width: 100%;
+}
+
+
+
+
