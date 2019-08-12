@@ -1,0 +1,22 @@
+.row {
+    text-align: center;
+}
+
+.body {
+    background-color: #3a3939;
+}
+
+.artistbox {
+    border-radius: 15px;
+    
+}
+
+.graybackground {
+    background-color: #848d94;
+    border-radius: 15px;
+
+}
+
+.nounderline {
+    text-decoration: none !important
+  }
